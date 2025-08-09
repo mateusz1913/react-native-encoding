@@ -7,7 +7,7 @@ static const uint8_t hexDecodingTable[128] = {
      0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 99, 99, 99, 99, 99, 99, /* 48 - 63 */
     99, 10, 11, 12, 13, 14, 15, 99, 99, 99, 99, 99, 99, 99, 99, 99, /* 64 - 79 */
     99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, /* 80 - 95 */
-    99, 16, 17, 18, 19, 20, 21, 99, 99, 99, 99, 99, 99, 99, 99, 99, /* 96 - 111 */
+    99, 10, 11, 12, 13, 14, 15, 99, 99, 99, 99, 99, 99, 99, 99, 99, /* 96 - 111 */
     99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99 /* 112 - 127 */
 };
 std::string decodeFromHexStringToUTF8String(const std::string &hexStr)
@@ -28,7 +28,7 @@ std::string decodeFromHexStringToUTF8String(const std::string &hexStr)
     return utf8Str;
 }
 
-static char hexDictionary[] = "0123456789ABCDEFabcdef";
+static char hexDictionary[] = "0123456789abcdef";
 std::string encodeFromUTF8StringToHexString(const std::string &utf8Str)
 {
     auto data = reinterpret_cast<const uint8_t*>(utf8Str.c_str());
