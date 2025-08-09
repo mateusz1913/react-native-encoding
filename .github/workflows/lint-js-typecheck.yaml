@@ -1,0 +1,46 @@
+name: JS lint and typecheck
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/lint-js-typecheck.yaml"
+      - "js-tests/**"
+      - "scripts/*.[tj]s"
+      - "src/**"
+      - ".prettierrc"
+      - "eslint.config.mjs"
+      - "jest.config.js"
+      - "package.json"
+      - "react-native.config.js"
+      - "tsconfig.json"
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  lint-js-typecheck:
+    name: JS lint and typecheck
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install --immutable
+        shell: bash
+
+      - name: Run ESLint
+        run: yarn lint:js
+
+      - name: Run TypeScript
+        run: yarn typecheck

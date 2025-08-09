@@ -1,0 +1,37 @@
+name: Test JS
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-js.yaml"
+      - "src/**"
+      - "tests-datasets/dataset.json"
+      - "jest.config.js"
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  test-js:
+    name: Run Jest suite
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install --immutable
+        shell: bash
+
+      - name: Run Jest
+        run: yarn test:js

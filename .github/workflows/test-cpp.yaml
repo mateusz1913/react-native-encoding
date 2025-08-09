@@ -1,0 +1,29 @@
+name: Test cpp
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-cpp.yaml"
+      - "cpp/**"
+      - "encoding-core/**"
+      - "native-tests/**"
+      - "scripts/generate-cpp-dataset.js"
+      - "tests-datasets/dataset.json"
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  test-cpp:
+    name: Run GTest suite
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run GTest
+        run: yarn test:cpp:prepare
