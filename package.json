@@ -53,6 +53,7 @@
     "!**/__mocks__"
   ],
   "scripts": {
+    "test:cpp:prepare": "./native-tests/prepare-and-run-tests.sh",
     "test:cpp": "./native-tests/run-tests.sh",
     "test:js": "jest"
   },
