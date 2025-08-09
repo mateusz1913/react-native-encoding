@@ -1,5 +1,7 @@
 #!/bin/sh
 DIRNAME=$(realpath $(dirname $0))
+# Generate dataset
+$DIRNAME/../scripts/generate-cpp-dataset.js
 # Prepare build files with CMake
 cmake -S $DIRNAME -B $DIRNAME/build
 if [ $? -ne 0 ];
