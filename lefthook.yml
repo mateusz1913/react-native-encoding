@@ -11,3 +11,5 @@ pre-push:
       run: yarn test:js
     - name: test CPP
       run: yarn test:cpp:prepare
+    - name: typecheck
+      run: yarn typecheck

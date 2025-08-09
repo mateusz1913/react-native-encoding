@@ -62,7 +62,9 @@
     "lint:objc": "./scripts/lint-objc.sh",
     "test:cpp:prepare": "./native-tests/prepare-and-run-tests.sh",
     "test:cpp": "./native-tests/run-tests.sh",
-    "test:js": "jest"
+    "test:js": "jest",
+    "tsc": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@callstack/eslint-config": "15.0.0",
