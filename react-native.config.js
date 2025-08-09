@@ -10,6 +10,6 @@ module.exports = {
         cxxModuleHeaderName: 'ReactNativeEncodingModule',
         sourceDir: 'cpp',
       },
-    }
+    },
   },
 };

@@ -1,0 +1,13 @@
+pre-push:
+  parallel: true
+  jobs:
+    - name: lint JS
+      run: yarn lint:js
+    - name: lint CPP
+      run: yarn lint:cpp
+    - name: lint ObjC
+      run: yarn lint:objc
+    - name: test JS
+      run: yarn test:js
+    - name: test CPP
+      run: yarn test:cpp:prepare

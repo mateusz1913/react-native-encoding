@@ -11,6 +11,7 @@ public:
 
     [[nodiscard]] size_t size() const override;
     uint8_t *data() override;
+
 private:
     uint8_t *data_;
     size_t size_;

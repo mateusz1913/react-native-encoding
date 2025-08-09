@@ -5,7 +5,7 @@ static const uint8_t base64DecodingTable[128] = {
     99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, /* 16 - 31 */
     99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 62, 99, 99, 99, 63, /* 32 - 47 */
     52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 99, 99, 99, 64, 99, 99, /* 48 - 63 */
-    99,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, /* 64 - 79 */
+    99, 0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11, 12, 13, 14, /* 64 - 79 */
     15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 99, 99, 99, 99, 99, /* 80 - 95 */
     99, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, /* 96 - 111 */
     41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 99, 99, 99, 99, 99 /* 112 - 127 */
@@ -25,7 +25,7 @@ std::string decodeFromBase64BufferToUtf8String(const uint8_t *data, const size_t
     std::string decodedStr;
     decodedStr.reserve(offset + (isPad1 ? 2 : 1));
 
-    for (auto p = (uint8_t *) data; p != data + offset; p += 4) {
+    for (auto p = (uint8_t *)data; p != data + offset; p += 4) {
         uint8_t b1 = base64DecodingTable[p[0]];
         uint8_t b2 = base64DecodingTable[p[1]];
         uint8_t b3 = base64DecodingTable[p[2]];
@@ -62,10 +62,10 @@ std::string encodeFromUtf8BufferToBase64String(const uint8_t *data, const size_t
     size_t last = size - pad;
 
     size_t encodedStrSize = ((size + 2) / 3) * 4;
-    std::string encodedStr (encodedStrSize, '=');
+    std::string encodedStr(encodedStrSize, '=');
 
     int i = 0;
-    for (auto p = (uint8_t *) data; p != data + last; p += 3) {
+    for (auto p = (uint8_t *)data; p != data + last; p += 3) {
         uint32_t triple = unsigned(p[0]) << 16 | unsigned(p[1]) << 8 | p[2];
 
         encodedStr[i++] = base64EncodingTable[triple >> 18];
@@ -75,7 +75,7 @@ std::string encodeFromUtf8BufferToBase64String(const uint8_t *data, const size_t
     }
 
     if (pad) {
-        uint8_t *p = (uint8_t *) data + last;
+        uint8_t *p = (uint8_t *)data + last;
 
         if (pad == 1) {
             auto triple = unsigned(p[0]);
