@@ -6,9 +6,8 @@ module.exports = {
     platforms: {
       android: {
         cxxModuleCMakeListsModuleName: 'ReactNativeEncoding',
-        cxxModuleCMakeListsPath: 'CMakeLists.txt',
+        cxxModuleCMakeListsPath: '../cpp/CMakeLists.txt',
         cxxModuleHeaderName: 'ReactNativeEncodingModule',
-        sourceDir: 'cpp',
       },
     },
   },

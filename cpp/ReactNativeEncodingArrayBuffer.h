@@ -6,8 +6,9 @@ namespace facebook::react {
 
 class ReactNativeEncodingArrayBuffer : public jsi::MutableBuffer {
 public:
-    explicit ReactNativeEncodingArrayBuffer(const std::string &str);
     explicit ReactNativeEncodingArrayBuffer(uint8_t *data, size_t size);
+
+    static std::shared_ptr<ReactNativeEncodingArrayBuffer> fromString(const std::string &str);
 
     [[nodiscard]] size_t size() const override;
     uint8_t *data() override;
