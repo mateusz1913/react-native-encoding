@@ -9,6 +9,7 @@ export default defineConfig([
     ignores: [
       // ignored files go here
       'dist/*',
+      'lib/*',
       'native-tests/build/*',
     ],
   },
