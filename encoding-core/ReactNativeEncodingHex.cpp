@@ -18,8 +18,8 @@ std::string decodeFromHexStringToUTF8String(const std::string &hexStr) {
     utf8Str.reserve((size / 2));
 
     for (size_t i = 0; i < size; i += 2) {
-        uint8_t b1 = hexDecodingTable[hexStr[i]];
-        uint8_t b2 = hexDecodingTable[hexStr[i + 1]];
+        uint8_t b1 = hexDecodingTable[data[i]];
+        uint8_t b2 = hexDecodingTable[data[i + 1]];
 
         utf8Str.push_back((char)((b1 << 4) | b2));
     }
