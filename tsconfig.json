@@ -1,5 +1,5 @@
 {
   "extends": "@react-native/typescript-config",
-  "include": ["src"],
-  "exclude": ["native-tests/build", "js-tests", "scripts", "lib"]
+  "include": ["src", "js-tests"],
+  "exclude": ["native-tests/build", "scripts", "lib"]
 }
