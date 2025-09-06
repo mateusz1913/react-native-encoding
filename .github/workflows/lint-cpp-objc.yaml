@@ -21,29 +21,39 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   lint-cpp-objc:
     name: Lint cpp and objc
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # https://dev.to/mayankpareek/introducing-ci-pipeline-for-clang-format-checks-in-faker-cxx-35go
-      - name: Cache clang-format dependencies
-        uses: actions/cache@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: /tmp/apt-cache
-          key: clang-format-${{ runner.os }}-${{ hashFiles('**/apt-packages.txt') }}
-          restore-keys: |
-            clang-format-${{ runner.os }}-
+          cache: 'yarn'
+          node-version: 20
 
-      - name: Install clang-format
-        run: |
-          if [ ! -f /tmp/apt-cache/clang-format-16 ]; then
-            sudo apt-get update
-            sudo apt-get install -y clang-format-16
-            touch /tmp/apt-cache/clang-format-16
-          fi
+      - name: Install dependencies
+        run: yarn install --immutable
+        shell: bash
+
+      # https://dev.to/mayankpareek/introducing-ci-pipeline-for-clang-format-checks-in-faker-cxx-35go
+      # - name: Cache clang-format dependencies
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: /tmp/apt-cache
+      #     key: clang-format-${{ runner.os }}-${{ hashFiles('**/apt-packages.txt') }}
+      #     restore-keys: |
+      #       clang-format-${{ runner.os }}-
+
+      # - name: Install clang-format
+      #   run: |
+      #     if [ ! -f /tmp/apt-cache/clang-format-16 ]; then
+      #       sudo apt-get update
+      #       sudo apt-get install -y clang-format-16
+      #       touch /tmp/apt-cache/clang-format-16
+      #     fi
 
       - name: Run clang-format
         run: |

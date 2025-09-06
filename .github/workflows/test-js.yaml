@@ -17,6 +17,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   test-js:
     name: Run Jest suite
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
