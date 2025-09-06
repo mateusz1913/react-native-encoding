@@ -23,6 +23,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   lint-js-typecheck:
     name: JS lint and typecheck
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
