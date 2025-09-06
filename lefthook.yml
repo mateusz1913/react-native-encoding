@@ -13,3 +13,7 @@ pre-push:
       run: yarn test:cpp:prepare
     - name: typecheck
       run: yarn typecheck
+commit-msg:
+  commands:
+    commitlint:
+      run: yarn commitlint --edit
