@@ -7,6 +7,7 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 add_library(ReactNativeEncodingCore SHARED
         ${CMAKE_CURRENT_SOURCE_DIR}/ReactNativeEncodingBase64.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ReactNativeEncodingBase64.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/base64.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ReactNativeEncodingHex.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ReactNativeEncodingHex.h)
 

@@ -47,6 +47,10 @@ function YEET(inputBuffer: Uint8Array) {
 - ✅ You can use this library with [Development Builds](https://docs.expo.dev/development/introduction/).
 - ❌ This library can't be used in the "Expo Go" app because it [requires custom native code](https://docs.expo.dev/workflow/customizing/).
 
+## Acknowledgements
+
+Base64 is implemented using https://github.com/tobiaslocker/base64 under MIT license
+
 ## Contributing
 
 See the [contributing guide](./CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.

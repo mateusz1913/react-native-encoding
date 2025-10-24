@@ -2,17 +2,17 @@
 
 namespace facebook::react {
 
-ReactNativeEncodingArrayBuffer::ReactNativeEncodingArrayBuffer(uint8_t *data, size_t size)
-    : jsi::MutableBuffer(), data_(data), size_(size) {}
+ReactNativeEncodingArrayBuffer::ReactNativeEncodingArrayBuffer(std::vector<uint8_t> data, size_t size)
+    : jsi::MutableBuffer(), data_(std::move(data)), size_(size) {}
 
 std::shared_ptr<ReactNativeEncodingArrayBuffer> ReactNativeEncodingArrayBuffer::fromString(const std::string &str) {
-    auto buffer = new uint8_t[str.size()];
-    std::copy(str.data(), str.data() + str.size(), buffer);
-    return std::make_shared<ReactNativeEncodingArrayBuffer>(buffer, str.size());
+    std::vector buffer(str.begin(), str.end());
+    auto size = buffer.size();
+    return std::make_shared<ReactNativeEncodingArrayBuffer>(std::move(buffer), size);
 }
 
 uint8_t *ReactNativeEncodingArrayBuffer::data() {
-    return data_;
+    return data_.data();
 }
 
 size_t ReactNativeEncodingArrayBuffer::size() const {
