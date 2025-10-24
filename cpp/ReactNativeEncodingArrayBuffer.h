@@ -1,12 +1,14 @@
 #pragma once
 
+#include <vector>
+
 #include <jsi/jsi.h>
 
 namespace facebook::react {
 
 class ReactNativeEncodingArrayBuffer : public jsi::MutableBuffer {
 public:
-    explicit ReactNativeEncodingArrayBuffer(uint8_t *data, size_t size);
+    explicit ReactNativeEncodingArrayBuffer(std::vector<uint8_t> data, size_t size);
 
     static std::shared_ptr<ReactNativeEncodingArrayBuffer> fromString(const std::string &str);
 
@@ -14,7 +16,7 @@ public:
     uint8_t *data() override;
 
 private:
-    uint8_t *data_;
+    std::vector<uint8_t> data_;
     size_t size_;
 };
 
