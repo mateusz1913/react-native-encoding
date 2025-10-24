@@ -1,48 +1,50 @@
-name: Release
+# Uncomment when Changesets starts supporting only publish to NPM without pushing changes back to repo
 
-on:
-  push:
-    branches:
-      - main
+# name: Release
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: read
+# on:
+#   push:
+#     branches:
+#       - main
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+# permissions:
+#   id-token: write  # Required for OIDC
+#   contents: read
 
-jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+# concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
+# jobs:
+#   release:
+#     name: Release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
 
-      # Ensure npm 11.5.1 or later is installed
-      - name: Update npm
-        run: npm install -g npm@latest
-        shell: bash
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: yarn
 
-      - name: Install Dependencies
-        run: yarn install --immutable
-        shell: bash
+#       # Ensure npm 11.5.1 or later is installed
+#       - name: Update npm
+#         run: npm install -g npm@latest
+#         shell: bash
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          version: yarn run version
-          commit: "chore: version packages"
-          title: "chore: version packages"
-          publish: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Install Dependencies
+#         run: yarn install --immutable
+#         shell: bash
+
+#       - name: Create Release Pull Request or Publish to npm
+#         id: changesets
+#         uses: changesets/action@v1
+#         with:
+#           version: yarn run version
+#           commit: "chore: version packages"
+#           title: "chore: version packages"
+#           publish: yarn release
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
