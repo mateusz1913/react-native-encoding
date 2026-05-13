@@ -79,7 +79,7 @@
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.6",
     "@commitlint/config-conventional": "^19.8.1",
-    "@react-native-community/cli": "19.1.1",
+    "@react-native-community/cli": "19.1.2",
     "@react-native/typescript-config": "0.79.5",
     "@types/jest": "29.5.14",
     "@types/react": "19.0.10",
